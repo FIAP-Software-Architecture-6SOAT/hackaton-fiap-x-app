@@ -7,8 +7,7 @@
     "test:detect-open-handles": "jest --config jest.config.ts --detectOpenHandles",
     "test:watch": "jest --config jest.config.ts --watch",
     "test:coverage": "jest --config jest.config.ts --coverage",
-    "ci:test": ".scripts/ci_test_coverage.sh",
-    "process-video": "tsx src/infra/processVideo/index.ts"
+    "ci:test": ".scripts/ci_test_coverage.sh"
   },
   "keywords": [],
   "author": "",
@@ -44,6 +43,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "3.651.1",
+    "@aws-sdk/client-s3": "^3.731.1",
     "@aws-sdk/client-secrets-manager": "^3.693.0",
     "@fastify/swagger": "^8.15.0",
     "@fastify/swagger-ui": "^4.0.1",
@@ -54,6 +54,7 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
+    "fastify-multipart": "^5.3.1",
     "fluent-ffmpeg": "^2.1.3",
     "jest-cucumber": "^4.5.0",
     "jsonwebtoken": "^9.0.2",
