@@ -9,7 +9,6 @@ export class VideoController {
   public async upload(request: HttpRequest): Promise<HttpResponse> {
     try {
       const { user } = request.state;
-
       const file = await request.file();
 
       if (!file) {
@@ -21,15 +20,13 @@ export class VideoController {
         };
       }
 
-      const videoId = await this.videoUseCase.upload({
+      const video = await this.videoUseCase.upload({
         file,
         user,
       });
 
       return {
-        data: {
-          id: videoId,
-        },
+        data: video,
         statusCode: 201,
       };
     } catch (err: unknown) {

@@ -1,12 +1,13 @@
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { randomUUID } from 'crypto';
 
+import type { VideoGateway } from '@/adapters/gateways';
 import type { UploadedFile } from '@/types';
 
 export class VideoUseCase {
   private readonly s3Client: S3Client;
 
-  constructor() {
+  public constructor(private readonly videoGateway: VideoGateway) {
     this.s3Client = new S3Client({
       region: 'us-east-1',
       credentials: {
@@ -22,28 +23,34 @@ export class VideoUseCase {
     user,
   }: {
     file: UploadedFile;
-    user: object;
-  }): Promise<string> {
+    user: { id: string; email: string };
+  }): Promise<{ id: string; fileName: string; status: string }> {
     // Read the file content
     const fileBuffer = await file.toBuffer();
-    console.log('File content length:', fileBuffer.length);
 
-    const formattedFilename = file.filename.replace(/ /g, '_');
+    const formattedFilename = file.filename.replace(/\s/g, '_');
     const fileName = `${randomUUID()}_${formattedFilename}`;
 
     // Define S3 upload parameters
+    const BUCKET = 'processvideos';
     const params = {
-      Bucket: 'processvideos',
-      Key: `${fileName}`,
+      Bucket: BUCKET,
+      Key: fileName,
       Body: fileBuffer,
       ContentType: file.mimetype,
     };
 
     // Upload file to S3
     const command = new PutObjectCommand(params);
-    const uploadResult = await this.s3Client.send(command);
-    console.log('🚀 ~ VideoUseCase ~ uploadResult:', uploadResult);
+    await this.s3Client.send(command);
 
-    return fileName;
+    const videoId = await this.videoGateway.create(
+      file.filename,
+      { key: fileName, bucket: BUCKET },
+      'Processando',
+      user.id
+    );
+
+    return { id: videoId, fileName: file.filename, status: 'Processando' };
   }
 }
