@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  fiap_x:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app/src
+    working_dir: /app/src
+    environment:
+      - MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+    networks:
+      - default
+
+networks:
+  default:
+    name: fiap_x_network

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-x-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fiap-x-app
+  template:
+    metadata:
+      labels:
+        app: fiap-x-app
+    spec:
+      containers:
+        - name: fiap-x-app
+          image: danilocassola/fiap-x:v1
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 256Mi
+              cpu: 100m
+          env:
+            - name: MONGODB_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: fiap-x-app-secrets
+                  key: MONGODB_CONNECTION_STRING
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: fiap-x-app-secrets
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fiap-x-app-secrets
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_SESSION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: fiap-x-app-secrets
+                  key: AWS_SESSION_TOKEN
