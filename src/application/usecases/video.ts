@@ -1,12 +1,18 @@
+/* eslint-disable no-process-env */
 import { randomUUID } from 'crypto';
 
-import type { CloudStorageGateway, VideoGateway } from '@/adapters/gateways';
+import type {
+  CloudStorageGateway,
+  QueueGateway,
+  VideoGateway,
+} from '@/adapters/gateways';
 import type { UploadedFile } from '@/types';
 
 export class VideoUseCase {
   public constructor(
     private readonly videoGateway: VideoGateway,
-    private readonly cloudStorageGateway: CloudStorageGateway
+    private readonly cloudStorageGateway: CloudStorageGateway,
+    private readonly queueGateway: QueueGateway
   ) {}
 
   public async upload({
@@ -35,6 +41,11 @@ export class VideoUseCase {
       { key: fileName, bucket: BUCKET },
       'Processando',
       user.id
+    );
+
+    await this.queueGateway.sendMessage(
+      process.env.QUEUE_URL as string,
+      JSON.stringify({ key: fileName, videoId })
     );
 
     return { id: videoId, fileName: file.filename, status: 'Processando' };
