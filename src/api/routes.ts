@@ -70,10 +70,14 @@ const apiRoutes = async (app: FastifyInstance): Promise<void> => {
   );
 
   app.get(
-    '/videos/:id/images/download',
+    '/videos/:id/download/images',
     authentication,
-    async (request, reply) =>
-      reply.send({ message: 'Authenticated', user: request.state.user })
+    async (request, reply) => {
+      const response = await videoController.downloadImages(
+        request as unknown as HttpRequest
+      );
+      return reply.status(response.statusCode).send(response.data);
+    }
   );
 
   app.post('/videos/upload', authentication, async (request, reply) => {

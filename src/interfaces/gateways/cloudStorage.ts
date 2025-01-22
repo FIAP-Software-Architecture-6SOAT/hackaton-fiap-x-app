@@ -10,4 +10,12 @@ export interface ICloudStorageGateway {
     fileBuffer: Buffer;
     contentType: string;
   }) => Promise<void>;
+
+  getDownloadUrl: ({
+    bucket,
+    key,
+  }: {
+    bucket: string;
+    key: string;
+  }) => Promise<string>;
 }

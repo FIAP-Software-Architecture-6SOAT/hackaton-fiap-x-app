@@ -34,13 +34,42 @@ export class VideoController {
       const response = {
         data: {
           err:
-            err.code === 'FST_REQ_FILE_TOO_LARGE'
+            (err as { code?: string }).code === 'FST_REQ_FILE_TOO_LARGE'
               ? 'Limit file size is 100MB'
               : messageError,
         },
         statusCode: 500,
       };
       return response;
+    }
+  }
+
+  public async downloadImages(request: HttpRequest): Promise<HttpResponse> {
+    try {
+      const { id } = request.params;
+
+      if (!id) {
+        return {
+          data: {
+            err: 'Id is required',
+          },
+          statusCode: 400,
+        };
+      }
+
+      const link = await this.videoUseCase.downloadImages(id);
+
+      return {
+        data: { link },
+        statusCode: 200,
+      };
+    } catch (err: unknown) {
+      return {
+        data: {
+          err: err instanceof Error ? err.message : 'Unknown error',
+        },
+        statusCode: 500,
+      };
     }
   }
 }

@@ -50,4 +50,16 @@ export class VideoUseCase {
 
     return { id: videoId, fileName: file.filename, status: 'Processando' };
   }
+
+  public async downloadImages(id: string): Promise<string> {
+    const video = await this.videoGateway.findOne(id);
+    if (!video) throw new Error('Video not found');
+
+    const url = await this.cloudStorageGateway.getDownloadUrl({
+      key: video.imagesZipPath.key,
+      bucket: video.imagesZipPath.bucket,
+    });
+
+    return url;
+  }
 }

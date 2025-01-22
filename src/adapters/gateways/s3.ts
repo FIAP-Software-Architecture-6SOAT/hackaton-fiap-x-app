@@ -26,4 +26,17 @@ export class S3Gateway implements ICloudStorageGateway {
       contentType,
     });
   }
+
+  public async getDownloadUrl({
+    bucket,
+    key,
+  }: {
+    bucket: string;
+    key: string;
+  }): Promise<string> {
+    return this.s3.getDownloadUrl({
+      bucket,
+      key,
+    });
+  }
 }

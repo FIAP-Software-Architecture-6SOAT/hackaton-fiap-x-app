@@ -20,7 +20,7 @@ export class VideoGateway implements IVideoGateway {
 
   public async findOne(id: string): Promise<Video | null> {
     const video = await this.dbConnection.findOne<Video>({
-      id,
+      _id: id,
     });
 
     if (!video) return null;
