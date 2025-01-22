@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
+import fastifyMultipart from '@fastify/multipart';
 import type { FastifyInstance } from 'fastify';
-import fastifyMultipart from 'fastify-multipart';
 
 import { UserController, VideoController } from '@/adapters/controllers';
 import {

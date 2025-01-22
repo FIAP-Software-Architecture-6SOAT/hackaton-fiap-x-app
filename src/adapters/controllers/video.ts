@@ -9,7 +9,7 @@ export class VideoController {
   public async upload(request: HttpRequest): Promise<HttpResponse> {
     try {
       const { user } = request.state;
-      const file = await request.file();
+      const file = await request.file({ limits: { fileSize: 104857600 } }); // 100MB 104857600
 
       if (!file) {
         return {
@@ -30,12 +30,17 @@ export class VideoController {
         statusCode: 201,
       };
     } catch (err: unknown) {
-      return {
+      const messageError = err instanceof Error ? err.message : 'Unknown error';
+      const response = {
         data: {
-          err: err instanceof Error ? err.message : 'Unknown error',
+          err:
+            err.code === 'FST_REQ_FILE_TOO_LARGE'
+              ? 'Limit file size is 100MB'
+              : messageError,
         },
         statusCode: 500,
       };
+      return response;
     }
   }
 }

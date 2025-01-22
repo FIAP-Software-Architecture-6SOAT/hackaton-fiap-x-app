@@ -16,5 +16,5 @@ export interface HttpRequest<T = any> {
       email: string;
     };
   };
-  file: () => Promise<UploadedFile>;
+  file: (input: object) => Promise<UploadedFile>;
 }
