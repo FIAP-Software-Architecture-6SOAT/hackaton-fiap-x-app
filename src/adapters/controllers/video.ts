@@ -60,7 +60,7 @@ export class VideoController {
       const link = await this.videoUseCase.downloadImages(id);
 
       return {
-        data: { link },
+        data: link,
         statusCode: 200,
       };
     } catch (err: unknown) {
