@@ -1,7 +1,7 @@
-import { S3 } from '../../infra/aws';
-import type { ICloudStorageGateway } from '../../interfaces/gateways';
+import { S3 } from '@/infra/aws';
+import type { ICloudStorageGateway } from '@/interfaces/gateways';
 
-export class CloudStorageGateway implements ICloudStorageGateway {
+export class S3Gateway implements ICloudStorageGateway {
   private readonly s3: S3;
 
   public constructor() {

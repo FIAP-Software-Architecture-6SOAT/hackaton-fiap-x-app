@@ -1,16 +1,16 @@
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 
-import type { AuthTokenGateway, UserGateway } from '@/adapters/gateways';
 import type { User } from '@/domain/entities';
 import { Email } from '@/domain/value-objects';
+import type { IAuthTokenGateway, IUserGateway } from '@/interfaces/gateways';
 
 dotenv.config();
 
 export class UserUseCase {
   public constructor(
-    private readonly userGateway: UserGateway,
-    private readonly authTokenGateway: AuthTokenGateway
+    private readonly userGateway: IUserGateway,
+    private readonly authTokenGateway: IAuthTokenGateway
   ) {}
 
   public async create({ email, password }: Omit<User, 'id'>): Promise<string> {

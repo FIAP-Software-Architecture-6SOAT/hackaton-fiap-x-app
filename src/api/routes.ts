@@ -5,8 +5,8 @@ import fastifyMultipart from 'fastify-multipart';
 import { UserController, VideoController } from '@/adapters/controllers';
 import {
   AuthTokenGateway,
-  CloudStorageGateway,
-  QueueGateway,
+  S3Gateway,
+  SQSGateway,
   UserGateway,
   VideoGateway,
 } from '@/adapters/gateways';
@@ -40,13 +40,9 @@ const apiRoutes = async (app: FastifyInstance): Promise<void> => {
 
   const videoDbConnection = new VideoDbConnection();
   const videoGateway = new VideoGateway(videoDbConnection);
-  const cloudStorageGateway = new CloudStorageGateway();
-  const queueGateway = new QueueGateway();
-  const videoUseCase = new VideoUseCase(
-    videoGateway,
-    cloudStorageGateway,
-    queueGateway
-  );
+  const s3Gateway = new S3Gateway();
+  const sqsGateway = new SQSGateway();
+  const videoUseCase = new VideoUseCase(videoGateway, s3Gateway, sqsGateway);
   const videoController = new VideoController(videoUseCase);
 
   app.addHook('preHandler', stateMiddleware());

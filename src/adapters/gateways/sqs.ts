@@ -1,7 +1,7 @@
-import { SQS } from '../../infra/aws';
-import type { IQueueGateway } from '../../interfaces/gateways';
+import { SQS } from '@/infra/aws';
+import type { IQueueGateway } from '@/interfaces/gateways';
 
-export class QueueGateway implements IQueueGateway {
+export class SQSGateway implements IQueueGateway {
   private readonly sqs: SQS;
 
   public constructor() {

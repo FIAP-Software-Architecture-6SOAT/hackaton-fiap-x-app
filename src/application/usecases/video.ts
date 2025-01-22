@@ -2,17 +2,17 @@
 import { randomUUID } from 'crypto';
 
 import type {
-  CloudStorageGateway,
-  QueueGateway,
-  VideoGateway,
-} from '@/adapters/gateways';
+  ICloudStorageGateway,
+  IQueueGateway,
+  IVideoGateway,
+} from '@/interfaces/gateways';
 import type { UploadedFile } from '@/types';
 
 export class VideoUseCase {
   public constructor(
-    private readonly videoGateway: VideoGateway,
-    private readonly cloudStorageGateway: CloudStorageGateway,
-    private readonly queueGateway: QueueGateway
+    private readonly videoGateway: IVideoGateway,
+    private readonly cloudStorageGateway: ICloudStorageGateway,
+    private readonly queueGateway: IQueueGateway
   ) {}
 
   public async upload({
