@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fiap-x-app
-          image: danilocassola/fiap-x:v1.1
+          image: danilocassola/fiap-x:v1
           ports:
             - containerPort: 3000
           resources:

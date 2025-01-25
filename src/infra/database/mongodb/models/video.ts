@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 import { mongoConnection } from '../index';
 
-const status = ['Processando', 'Concluído'];
+const status = ['Processando', 'Concluído', 'Erro'];
 
 const Schema = new mongoose.Schema(
   {

@@ -24,12 +24,12 @@ export class VideoUseCase {
   }): Promise<{ id: string; fileName: string; status: string }> {
     const fileBuffer = await file.toBuffer();
     const formattedFilename = file.filename.replace(/\s/g, '_');
-    const fileName = `${randomUUID()}_${formattedFilename}`;
+    const key = `${randomUUID()}_${formattedFilename}`;
     const BUCKET = 'processvideos';
 
     const input = {
       bucket: BUCKET,
-      key: fileName,
+      key,
       fileBuffer,
       contentType: file.mimetype,
     };
@@ -38,14 +38,14 @@ export class VideoUseCase {
 
     const videoId = await this.videoGateway.create(
       file.filename,
-      { key: fileName, bucket: BUCKET },
+      { key, bucket: BUCKET },
       'Processando',
       user.id
     );
 
     await this.queueGateway.sendMessage(
       process.env.QUEUE_URL as string,
-      JSON.stringify({ key: fileName, videoId })
+      JSON.stringify({ videoId })
     );
 
     return { id: videoId, fileName: file.filename, status: 'Processando' };
@@ -56,8 +56,17 @@ export class VideoUseCase {
   ): Promise<{ message: string; link: string | null }> {
     const video = await this.videoGateway.findOne(id);
     if (!video) throw new Error('Video not found');
-    if (video.status !== 'Concluído')
+
+    if (video.status === 'Processando') {
       return { message: 'video is still processing', link: null };
+    }
+
+    if (video.status === 'Erro') {
+      return {
+        message: 'Video processing failed, images are not available',
+        link: null,
+      };
+    }
 
     const url = await this.cloudStorageGateway.getDownloadUrl({
       key: video.imagesZipPath.key,
