@@ -1,6 +1,7 @@
 /* eslint-disable no-process-env */
 import { randomUUID } from 'crypto';
 
+import type { Video } from '@/domain/entities';
 import type {
   ICloudStorageGateway,
   IQueueGateway,
@@ -14,6 +15,27 @@ export class VideoUseCase {
     private readonly cloudStorageGateway: ICloudStorageGateway,
     private readonly queueGateway: IQueueGateway
   ) {}
+
+  public async getVideo({
+    id,
+    user,
+  }: {
+    id: string;
+    user: { id: string; email: string };
+  }): Promise<Video | null> {
+    const video = await this.videoGateway.findOne(id);
+    if (!video) throw new Error('Video not found');
+    if (video.user.toString() !== user.id) return null;
+    return video;
+  }
+
+  public async getVideos(user: {
+    id: string;
+    email: string;
+  }): Promise<Video[]> {
+    const videos = await this.videoGateway.find({ user: user.id });
+    return videos;
+  }
 
   public async upload({
     file,

@@ -33,4 +33,19 @@ export class VideoGateway implements IVideoGateway {
       video.user
     );
   }
+
+  public async find(params: { user: string }): Promise<Video[]> {
+    const videos = await this.dbConnection.find<Video>(params);
+    return videos.map(
+      (video: Video) =>
+        new Video(
+          video._id,
+          video.fileName,
+          video.videoPath,
+          video.imagesZipPath,
+          video.status,
+          video.user
+        )
+    );
+  }
 }

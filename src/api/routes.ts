@@ -50,7 +50,7 @@ const apiRoutes = async (app: FastifyInstance): Promise<void> => {
     preHandler: authenticationMiddleware(authenticationUseCase),
   };
 
-  app.post('/login', async (request, reply) => {
+  app.post('/auth/login', async (request, reply) => {
     const response = await userController.login(
       request as unknown as HttpRequest
     );
@@ -64,10 +64,19 @@ const apiRoutes = async (app: FastifyInstance): Promise<void> => {
     return reply.status(response.statusCode).send(response.data);
   });
 
-  // Videos
-  app.get('/videos', authentication, async (request, reply) =>
-    reply.send({ message: 'Authenticated', user: request.state.user })
-  );
+  app.get('/videos', authentication, async (request, reply) => {
+    const response = await videoController.getVideos(
+      request as unknown as HttpRequest
+    );
+    return reply.status(response.statusCode).send(response.data);
+  });
+
+  app.get('/videos/:id', authentication, async (request, reply) => {
+    const response = await videoController.getVideo(
+      request as unknown as HttpRequest
+    );
+    return reply.status(response.statusCode).send(response.data);
+  });
 
   app.get(
     '/videos/:id/download/images',

@@ -6,6 +6,70 @@ import type { HttpRequest, HttpResponse } from '@/interfaces/http';
 export class VideoController {
   public constructor(private readonly videoUseCase: VideoUseCase) {}
 
+  public async getVideo(request: HttpRequest): Promise<HttpResponse> {
+    try {
+      const { user } = request.state;
+      const { id } = request.params;
+
+      if (!id) {
+        return {
+          data: {
+            err: 'Id is required',
+          },
+          statusCode: 400,
+        };
+      }
+
+      const video = await this.videoUseCase.getVideo({
+        id,
+        user,
+      });
+
+      return {
+        data: {
+          fileName: video?.fileName,
+          status: video?.status,
+          videoPath: video?.videoPath,
+          imagesZipPath: video?.imagesZipPath,
+        },
+        statusCode: 200,
+      };
+    } catch (err: unknown) {
+      return {
+        data: {
+          err: err instanceof Error ? err.message : 'Unknown error',
+        },
+        statusCode: 500,
+      };
+    }
+  }
+
+  public async getVideos(request: HttpRequest): Promise<HttpResponse> {
+    try {
+      const { user } = request.state;
+
+      const videos = await this.videoUseCase.getVideos(user);
+
+      return {
+        data: videos.map((video) => ({
+          id: video.id,
+          fileName: video.fileName,
+          status: video.status,
+          videoPath: video.videoPath,
+          imagesZipPath: video?.imagesZipPath,
+        })),
+        statusCode: 200,
+      };
+    } catch (err: unknown) {
+      return {
+        data: {
+          err: err instanceof Error ? err.message : 'Unknown error',
+        },
+        statusCode: 500,
+      };
+    }
+  }
+
   public async upload(request: HttpRequest): Promise<HttpResponse> {
     try {
       const { user } = request.state;

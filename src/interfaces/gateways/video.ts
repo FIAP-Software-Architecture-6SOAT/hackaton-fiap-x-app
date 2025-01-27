@@ -8,4 +8,5 @@ export interface IVideoGateway {
     user: string
   ) => Promise<string>;
   findOne: (id: string) => Promise<Video | null>;
+  find: ({ user }: { user: string }) => Promise<Video[]>;
 }
