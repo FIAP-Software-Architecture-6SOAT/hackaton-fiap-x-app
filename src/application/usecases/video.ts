@@ -7,7 +7,7 @@ import type {
   IQueueGateway,
   IVideoGateway,
 } from '@/interfaces/gateways';
-import type { UploadedFile } from '@/types';
+import type { UploadedFile } from '@/interfaces/upload';
 
 export class VideoUseCase {
   public constructor(
