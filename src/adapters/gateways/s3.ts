@@ -1,6 +1,11 @@
+import 'reflect-metadata';
+
+import { injectable } from 'tsyringe';
+
 import { S3 } from '@/infra/aws';
 import type { ICloudStorageGateway } from '@/interfaces/gateways';
 
+@injectable()
 export class S3Gateway implements ICloudStorageGateway {
   private readonly s3: S3;
 
@@ -27,13 +32,7 @@ export class S3Gateway implements ICloudStorageGateway {
     });
   }
 
-  public async getDownloadUrl({
-    bucket,
-    key,
-  }: {
-    bucket: string;
-    key: string;
-  }): Promise<string> {
+  public async getDownloadUrl({ bucket, key }: { bucket: string; key: string }): Promise<string> {
     return this.s3.getDownloadUrl({
       bucket,
       key,

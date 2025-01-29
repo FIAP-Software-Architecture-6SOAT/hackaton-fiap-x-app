@@ -14,10 +14,7 @@ export class MongoDbConnection implements DbConnection {
     return { _id: newModel._id as unknown as string } as T;
   }
 
-  public async edit<T = unknown>(params: {
-    id: string;
-    value: object;
-  }): Promise<T | null> {
+  public async edit<T = unknown>(params: { id: string; value: object }): Promise<T | null> {
     const { id, value } = params;
     return this.Model.findByIdAndUpdate(id, value, { new: true });
   }

@@ -3,8 +3,5 @@ export interface DbConnection {
   findOne: <T = unknown>(params: object) => Promise<T | null>;
   create: <T = unknown>(params: object) => Promise<T>;
   delete: (id: string) => Promise<void>;
-  edit: <T = unknown>(params: {
-    id: string;
-    value: object;
-  }) => Promise<T | null>;
+  edit: <T = unknown>(params: { id: string; value: object }) => Promise<T | null>;
 }

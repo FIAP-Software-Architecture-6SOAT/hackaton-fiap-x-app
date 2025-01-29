@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { VideoUseCase } from '@/application/usecases';
+import 'reflect-metadata';
+
+import { inject, injectable } from 'tsyringe';
+
+import { VideoUseCase } from '@/application/usecases';
 import type { HttpRequest, HttpResponse } from '@/interfaces/http';
 
+@injectable()
 export class VideoController {
-  public constructor(private readonly videoUseCase: VideoUseCase) {}
+  public constructor(@inject('VideoUseCase') private readonly videoUseCase: VideoUseCase) {}
 
   public async getVideo(request: HttpRequest): Promise<HttpResponse> {
     try {

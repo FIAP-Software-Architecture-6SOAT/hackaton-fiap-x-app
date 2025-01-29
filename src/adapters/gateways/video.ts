@@ -1,10 +1,15 @@
 /* eslint-disable no-underscore-dangle */
+import 'reflect-metadata';
+
+import { inject, injectable } from 'tsyringe';
+
 import { Video } from '@/domain/entities';
-import type { DbConnection } from '@/interfaces/db/connection';
+import { DbConnection } from '@/interfaces/db/connection';
 import type { IVideoGateway } from '@/interfaces/gateways';
 
+@injectable()
 export class VideoGateway implements IVideoGateway {
-  public constructor(private readonly dbConnection: DbConnection) {}
+  public constructor(@inject('VideoDbConnection') private readonly dbConnection: DbConnection) {}
 
   public async create(
     fileName: string,
@@ -25,7 +30,7 @@ export class VideoGateway implements IVideoGateway {
 
     if (!video) return null;
     return new Video(
-      video._id,
+      video.id,
       video.fileName,
       video.videoPath,
       video.imagesZipPath,
@@ -39,7 +44,7 @@ export class VideoGateway implements IVideoGateway {
     return videos.map(
       (video: Video) =>
         new Video(
-          video._id,
+          video.id,
           video.fileName,
           video.videoPath,
           video.imagesZipPath,

@@ -1,16 +1,20 @@
+import 'reflect-metadata';
+
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
+import { inject, injectable } from 'tsyringe';
 
 import type { User } from '@/domain/entities';
 import { Email } from '@/domain/value-objects';
-import type { IAuthTokenGateway, IUserGateway } from '@/interfaces/gateways';
+import { IAuthTokenGateway, IUserGateway } from '@/interfaces/gateways';
 
 dotenv.config();
 
+@injectable()
 export class UserUseCase {
   public constructor(
-    private readonly userGateway: IUserGateway,
-    private readonly authTokenGateway: IAuthTokenGateway
+    @inject('UserGateway') private readonly userGateway: IUserGateway,
+    @inject('AuthTokenGateway') private readonly authTokenGateway: IAuthTokenGateway
   ) {}
 
   public async create({ email, password }: Omit<User, 'id'>): Promise<string> {

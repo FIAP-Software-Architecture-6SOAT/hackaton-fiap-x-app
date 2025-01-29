@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import type { UserUseCase } from '@/application/usecases';
+import 'reflect-metadata';
+
+import { inject, injectable } from 'tsyringe';
+
+import { UserUseCase } from '@/application/usecases';
 import type { HttpRequest, HttpResponse } from '@/interfaces/http';
 
+@injectable()
 export class UserController {
-  public constructor(private readonly userUseCase: UserUseCase) {}
+  public constructor(@inject('UserUseCase') private readonly userUseCase: UserUseCase) {}
 
   public async create(request: HttpRequest): Promise<HttpResponse> {
     try {

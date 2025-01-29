@@ -8,17 +8,12 @@ export const authenticationMiddleware =
   async (request: FastifyRequest, reply: FastifyReply): Promise<void> => {
     const { authorization } = request.headers;
 
-    if (!authorization)
-      return reply
-        .status(401)
-        .send({ message: 'Missing Authorization Header' });
+    if (!authorization) return reply.status(401).send({ message: 'Missing Authorization Header' });
 
     const [schema, token] = authorization.split(' ');
 
     if (!schema || !token) {
-      return reply
-        .status(401)
-        .send({ message: 'Invalid Authorization Header' });
+      return reply.status(401).send({ message: 'Invalid Authorization Header' });
     }
 
     if (schema !== 'Bearer') {

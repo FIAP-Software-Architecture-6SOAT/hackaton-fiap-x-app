@@ -1,7 +1,10 @@
+import '@/injection/dependencyInjectionContainer';
+
 import dotenv from 'dotenv';
 import Fastify from 'fastify';
 
-import { Logger } from '../infra/logs/logger';
+import { Logger } from '@/infra/logs/logger';
+
 import routes from './routes';
 
 export const App = {
