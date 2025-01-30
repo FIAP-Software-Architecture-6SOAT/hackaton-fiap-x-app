@@ -1,4 +1,4 @@
-import type { UploadedFile } from '@/interfaces/upload';
+import type { UploadedFile } from '@/domain/interfaces/upload';
 
 export interface HttpRequest<T = any> {
   body: {

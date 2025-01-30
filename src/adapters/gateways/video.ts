@@ -4,8 +4,8 @@ import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
 import { Video } from '@/domain/entities';
-import { DbConnection } from '@/interfaces/db/connection';
-import type { IVideoGateway } from '@/interfaces/gateways';
+import { DbConnection } from '@/domain/interfaces/db/connection';
+import type { IVideoGateway } from '@/domain/interfaces/gateways';
 
 @injectable()
 export class VideoGateway implements IVideoGateway {

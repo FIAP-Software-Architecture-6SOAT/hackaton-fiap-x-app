@@ -5,7 +5,7 @@ import { container } from 'tsyringe';
 import { UserController, VideoController } from '@/adapters/controllers';
 import { authenticationMiddleware, stateMiddleware } from '@/adapters/middlewares';
 import { AuthenticationUseCase } from '@/application/usecases';
-import type { HttpRequest } from '@/interfaces/http';
+import type { HttpRequest } from '@/domain/interfaces/http';
 
 const apiRoutes = async (app: FastifyInstance): Promise<void> => {
   await app.register(fastifyMultipart);

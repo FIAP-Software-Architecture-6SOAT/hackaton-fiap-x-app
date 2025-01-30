@@ -5,8 +5,8 @@ import { randomUUID } from 'crypto';
 import { inject, injectable } from 'tsyringe';
 
 import type { Video } from '@/domain/entities';
-import { ICloudStorageGateway, IQueueGateway, IVideoGateway } from '@/interfaces/gateways';
-import type { UploadedFile } from '@/interfaces/upload';
+import { ICloudStorageGateway, IQueueGateway, IVideoGateway } from '@/domain/interfaces/gateways';
+import type { UploadedFile } from '@/domain/interfaces/upload';
 
 @injectable()
 export class VideoUseCase {

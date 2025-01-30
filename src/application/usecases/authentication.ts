@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 import { inject, injectable } from 'tsyringe';
 
-import { IAuthTokenGateway } from '@/interfaces/gateways';
+import { IAuthTokenGateway } from '@/domain/interfaces/gateways';
 
 @injectable()
 export class AuthenticationUseCase {

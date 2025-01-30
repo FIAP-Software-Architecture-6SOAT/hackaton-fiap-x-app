@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { injectable } from 'tsyringe';
 
 import { S3 } from '@/infra/aws';
-import type { ICloudStorageGateway } from '@/interfaces/gateways';
+import type { ICloudStorageGateway } from '@/domain/interfaces/gateways';
 
 @injectable()
 export class S3Gateway implements ICloudStorageGateway {

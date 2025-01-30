@@ -4,8 +4,8 @@ import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
 import { User } from '@/domain/entities';
-import { DbConnection } from '@/interfaces/db/connection';
-import type { IUserGateway } from '@/interfaces/gateways';
+import { DbConnection } from '@/domain/interfaces/db/connection';
+import type { IUserGateway } from '@/domain/interfaces/gateways';
 
 @injectable()
 export class UserGateway implements IUserGateway {

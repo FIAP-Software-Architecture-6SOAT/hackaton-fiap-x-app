@@ -5,8 +5,8 @@ import dotenv from 'dotenv';
 import { inject, injectable } from 'tsyringe';
 
 import type { User } from '@/domain/entities';
+import { IAuthTokenGateway, IUserGateway } from '@/domain/interfaces/gateways';
 import { Email } from '@/domain/value-objects';
-import { IAuthTokenGateway, IUserGateway } from '@/interfaces/gateways';
 
 dotenv.config();
 

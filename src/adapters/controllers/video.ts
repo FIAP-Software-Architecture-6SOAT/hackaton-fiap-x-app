@@ -5,7 +5,7 @@ import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
 import { VideoUseCase } from '@/application/usecases';
-import type { HttpRequest, HttpResponse } from '@/interfaces/http';
+import type { HttpRequest, HttpResponse } from '@/domain/interfaces/http';
 
 @injectable()
 export class VideoController {

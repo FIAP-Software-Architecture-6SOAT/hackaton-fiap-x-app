@@ -11,11 +11,5 @@ export interface ICloudStorageGateway {
     contentType: string;
   }) => Promise<void>;
 
-  getDownloadUrl: ({
-    bucket,
-    key,
-  }: {
-    bucket: string;
-    key: string;
-  }) => Promise<string>;
+  getDownloadUrl: ({ bucket, key }: { bucket: string; key: string }) => Promise<string>;
 }

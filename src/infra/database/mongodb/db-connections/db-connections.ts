@@ -3,7 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 import type { Model as ModelType } from 'mongoose';
 
-import type { DbConnection } from '@/interfaces/db/connection';
+import type { DbConnection } from '@/domain/interfaces/db/connection';
 
 export class MongoDbConnection implements DbConnection {
   public constructor(private readonly Model: ModelType<any>) {}
