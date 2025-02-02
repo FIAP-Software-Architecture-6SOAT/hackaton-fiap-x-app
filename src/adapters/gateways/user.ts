@@ -1,10 +1,15 @@
 /* eslint-disable no-underscore-dangle */
-import { User } from '@/domain/entities';
-import type { DbConnection } from '@/interfaces/db/connection';
-import type { IUserGateway } from '@/interfaces/gateways';
+import 'reflect-metadata';
 
+import { inject, injectable } from 'tsyringe';
+
+import { User } from '@/domain/entities';
+import { DbConnection } from '@/domain/interfaces/db/connection';
+import type { IUserGateway } from '@/domain/interfaces/gateways';
+
+@injectable()
 export class UserGateway implements IUserGateway {
-  public constructor(private readonly dbConnection: DbConnection) {}
+  public constructor(@inject('UserDbConnection') private readonly dbConnection: DbConnection) {}
 
   public async create(email: string, password: string): Promise<string> {
     const user = await this.dbConnection.create<{

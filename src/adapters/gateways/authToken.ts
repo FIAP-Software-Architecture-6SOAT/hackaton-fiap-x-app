@@ -1,9 +1,14 @@
 /* eslint-disable no-underscore-dangle */
-import type { AuthToken } from '@/infra/authToken';
-import type { IAuthTokenGateway } from '@/interfaces/gateways';
+import 'reflect-metadata';
 
+import { inject, injectable } from 'tsyringe';
+
+import { AuthToken } from '@/infra/authToken';
+import type { IAuthTokenGateway } from '@/domain/interfaces/gateways';
+
+@injectable()
 export class AuthTokenGateway implements IAuthTokenGateway {
-  public constructor(private readonly authToken: AuthToken) {}
+  public constructor(@inject('AuthToken') private readonly authToken: AuthToken) {}
 
   public authenticate(token: string): false | { id: string; email: string } {
     const verify = this.authToken.verifyToken(token);

@@ -1,3 +1,5 @@
+import type { UploadedFile } from '@/domain/interfaces/upload';
+
 export interface HttpRequest<T = any> {
   body: {
     email: string;
@@ -9,9 +11,10 @@ export interface HttpRequest<T = any> {
   };
   query: T;
   state: {
-    user?: {
+    user: {
       id: string;
       email: string;
     };
   };
+  file: (input: object) => Promise<UploadedFile>;
 }

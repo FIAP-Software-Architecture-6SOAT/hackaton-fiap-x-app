@@ -1,5 +1,5 @@
-import { SecretsManager } from '../../infra/aws';
-import type { ISecretsGateway } from '../../interfaces/gateways';
+import { SecretsManager } from '@/infra/aws';
+import type { ISecretsGateway } from '@/domain/interfaces/gateways';
 
 export class SecretsGateway implements ISecretsGateway {
   private readonly secretsManager: SecretsManager;
