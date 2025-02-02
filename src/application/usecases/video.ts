@@ -44,7 +44,7 @@ export class VideoUseCase {
     const fileBuffer = await file.toBuffer();
     const formattedFilename = file.filename.replace(/\s/g, '_');
     const key = `${randomUUID()}_${formattedFilename}`;
-    const BUCKET = 'processvideos';
+    const BUCKET = 'videos-process';
 
     const input = {
       bucket: BUCKET,
