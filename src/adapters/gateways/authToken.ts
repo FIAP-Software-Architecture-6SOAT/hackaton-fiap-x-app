@@ -3,8 +3,8 @@ import 'reflect-metadata';
 
 import { inject, injectable } from 'tsyringe';
 
-import { AuthToken } from '@/infra/authToken';
 import type { IAuthTokenGateway } from '@/domain/interfaces/gateways';
+import { AuthToken } from '@/infra/authToken';
 
 @injectable()
 export class AuthTokenGateway implements IAuthTokenGateway {
