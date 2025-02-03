@@ -1,8 +1,8 @@
-import pino from 'pino'
+import pino from 'pino';
 
 export const Logger = pino({
   level: 'debug',
   transport: {
-    target: 'pino-pretty'
-  }
-})
+    target: 'pino-pretty',
+  },
+});
