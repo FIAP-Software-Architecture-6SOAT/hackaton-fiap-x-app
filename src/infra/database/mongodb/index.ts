@@ -7,9 +7,7 @@ import { Logger } from '../../logs/logger';
 dotenv.config();
 
 const connection = (): mongoose.Connection => {
-  const conn = mongoose.createConnection(
-    String(process.env.MONGODB_CONNECTION_STRING)
-  );
+  const conn = mongoose.createConnection(String(process.env.MONGODB_CONNECTION_STRING));
 
   conn.once('connected', () => {
     Logger.info('MongoDB is connected!');

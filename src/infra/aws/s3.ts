@@ -1,9 +1,5 @@
 /* eslint-disable no-process-env */
-import {
-  GetObjectCommand,
-  PutObjectCommand,
-  S3Client,
-} from '@aws-sdk/client-s3';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 export class S3 {
@@ -42,13 +38,7 @@ export class S3 {
     await this.client.send(command);
   }
 
-  public async getDownloadUrl({
-    bucket,
-    key,
-  }: {
-    bucket: string;
-    key: string;
-  }): Promise<string> {
+  public async getDownloadUrl({ bucket, key }: { bucket: string; key: string }): Promise<string> {
     const command = new GetObjectCommand({
       Bucket: bucket,
       Key: key,

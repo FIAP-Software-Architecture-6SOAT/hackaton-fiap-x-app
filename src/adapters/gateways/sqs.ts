@@ -2,8 +2,8 @@ import 'reflect-metadata';
 
 import { injectable } from 'tsyringe';
 
-import { SQS } from '@/infra/aws';
 import type { IQueueGateway } from '@/domain/interfaces/gateways';
+import { SQS } from '@/infra/aws';
 
 @injectable()
 export class SQSGateway implements IQueueGateway {
