@@ -4,7 +4,6 @@
 ## Requisitos para deploy
 - Banco de dados em produção
 - Cluster EKS em produção
-<br />
 
 ## Secrets
 Secrets cadastradas no repositório do GitHub
@@ -52,3 +51,9 @@ docker compose down
 | GET    | `/videos/:id`                | Um vídeo do usuário        |
 | GET    | `/videos/:id/download/image` | Link para download         |
 | POST   | `/videos/upload`             | Upload de vídeo            |
+
+<br />
+
+## Evidência de cobertura de testes
+
+![Evidência de cobertura de testes](coverage.jpg)
