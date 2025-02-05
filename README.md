@@ -45,12 +45,12 @@ docker compose down
 
 ### Video routes
 
-| Method | Endpoint                     | Description                |
-| ------ | ---------------------------- | -------------------------- |
-| GET    | `/videos`                    | Todos os vídeo do usuário  |
-| GET    | `/videos/:id`                | Um vídeo do usuário        |
-| GET    | `/videos/:id/download/image` | Link para download         |
-| POST   | `/videos/upload`             | Upload de vídeo            |
+| Method | Endpoint                      | Description                |
+| ------ | ----------------------------- | -------------------------- |
+| GET    | `/videos`                     | Todos os vídeo do usuário  |
+| GET    | `/videos/:id`                 | Um vídeo do usuário        |
+| GET    | `/videos/:id/download/images` | Link para download         |
+| POST   | `/videos/upload`              | Upload de vídeo            |
 
 <br />
 
