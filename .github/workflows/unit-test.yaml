@@ -1,4 +1,4 @@
-name: Run Unit Tests
+name: Run Unit Tests - Fiap X
 
 on:
   pull_request:
