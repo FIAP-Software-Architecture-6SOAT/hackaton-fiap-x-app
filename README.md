@@ -15,6 +15,10 @@ AWS_SECRET_ACCESS_KEY
 AWS_SESSION_TOKEN
 MONGODB_CONNECTION_STRING
 DOCKERHUB_TOKEN
+JWT_SECRET
+QUEUE_URL
+BUCKET_VIDEOS_NAME
+BUCKET_IMAGES_ZIP_NAME
 ```
 
 ## Como rodar o projeto local?
@@ -45,15 +49,21 @@ docker compose down
 
 ### Video routes
 
-| Method | Endpoint                      | Description                |
-| ------ | ----------------------------- | -------------------------- |
-| GET    | `/videos`                     | Todos os vídeo do usuário  |
-| GET    | `/videos/:id`                 | Um vídeo do usuário        |
-| GET    | `/videos/:id/download/images` | Link para download         |
-| POST   | `/videos/upload`              | Upload de vídeo            |
+| Method | Endpoint                      | Description                 |
+| ------ | ----------------------------- | --------------------------- |
+| GET    | `/videos`                     | Todos os vídeo do usuário   |
+| GET    | `/videos/:id`                 | Um vídeo do usuário         |
+| GET    | `/videos/:id/download/images` | Solicita link para download |
+| POST   | `/videos/upload`              | Upload de vídeo             |
 
 <br />
 
-## Evidência de cobertura de testes
 
+## Evidência de cobertura de testes
 ![Evidência de cobertura de testes](coverage.jpg)
+
+## Desenho da modelagem banco de dados
+![Desenho da modelagem banco de dados](database_modeling.jpg)
+
+## Desenho da arquitetura
+![Desenho da arquitetura](architecture.png)
