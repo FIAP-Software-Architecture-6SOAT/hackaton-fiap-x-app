@@ -9,6 +9,8 @@ servers:
 paths:
   /auth/login:
     post:
+      tags:
+        - auth
       summary: Login
       requestBody:
         required: true
@@ -28,6 +30,8 @@ paths:
           description: Successful login
   /videos:
     get:
+      tags:
+        - videos
       summary: Get videos
       security:
         - bearerAuth: []
@@ -36,6 +40,8 @@ paths:
           description: List of videos
   /videos/{id}:
     get:
+      tags:
+        - videos
       summary: Get video by ID
       parameters:
         - name: id
@@ -50,6 +56,8 @@ paths:
           description: Video details
   /videos/upload:
     post:
+      tags:
+        - videos
       summary: Upload video
       requestBody:
         required: true
@@ -68,6 +76,8 @@ paths:
           description: Video uploaded
   /videos/{id}/download/images:
     get:
+      tags:
+        - videos
       summary: Download video images
       parameters:
         - name: id
@@ -82,6 +92,8 @@ paths:
           description: Downloaded images
   /user:
     post:
+      tags:
+        - user
       summary: Create user
       requestBody:
         required: true
