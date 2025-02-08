@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import Fastify from 'fastify';
 
 import { Logger } from '@/infra/logs/logger';
+import { setupSwagger } from '@/swagger';
 
 import routes from './routes';
 
@@ -15,6 +16,8 @@ export const App = {
       bodyLimit: 314572800, // 300MB
       requestTimeout: 180000, // 180 seconds
     });
+
+    setupSwagger(app);
 
     await app.register(routes);
     await app.ready();

@@ -1,6 +1,9 @@
 # FIAP X App
 > Projeto do curso de pós graduação da FIAP
 
+## Upload de vídeos
+- O vídeo não pode ser maior do que 100MB
+
 ## Requisitos para deploy
 - Banco de dados em produção
 - Cluster EKS em produção
@@ -31,6 +34,14 @@ docker compose up
 ```bash
 docker compose down
 ```
+
+## Como acessar a documentação?
+```
+http://localhost:3000/docs
+```
+
+### Arquivo yaml do swagger
+[fiap-x-app-swagger-with-servers.yaml](./docs/fiap-x-app-swagger-with-servers.yaml)
 
 ## Endpoints
 
