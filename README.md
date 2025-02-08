@@ -41,7 +41,10 @@ http://localhost:3000/docs
 ```
 
 ### Arquivo yaml do swagger
-[fiap-x-app-swagger-with-servers.yaml](./docs/fiap-x-app-swagger-with-servers.yaml)
+[fiap-x-app-swagger-with-servers.yaml](./docs/fiap-x-app-swagger.yaml)
+
+### Arquivo yaml do insomnia
+[fiap-x-app-insomnia.yaml](./docs/fiap-x-app-insomnia.yaml)
 
 ## Endpoints
 

@@ -3,6 +3,9 @@ info:
   title: fiap-x-app API
   description: API documentation for fiap-x-app
   version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local server
 paths:
   /auth/login:
     post:
@@ -105,6 +108,8 @@ paths:
                 password:
                   type: string
                   example: 1234
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: User created
