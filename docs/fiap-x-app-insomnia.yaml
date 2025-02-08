@@ -1,0 +1,295 @@
+_type: export
+__export_format: 4
+__export_date: 2025-02-08T18:09:56.126Z
+__export_source: insomnia.desktop.app:v10.3.0
+resources:
+  - _id: req_1655fb99170c41c282e33de7f69ae4e9
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1739038126552
+    created: 1737219999583
+    url: "{{ _.url }}/auth/login"
+    name: auth/login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "example@mail.com",
+        	"password": "1234"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d6a9dc3a165f460f97f2fc9b342b25ce
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication: {}
+    metaSortKey: -1725918480622.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    parentId: null
+    modified: 1737908511467
+    created: 1737216805126
+    name: fiap-x-app
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_b68020cb8ea045db8d8f6ad4c2303e67
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1738114805262
+    created: 1737216805144
+    url: "{{ _.url }}/videos"
+    name: videos
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{{ _.token }}"
+    metaSortKey: -1725918480522.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_240ba077b8d64338b9e5e1d760bbdca6
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1738461709645
+    created: 1738019167431
+    url: "{{ _.url }}/videos/679ed295ee909bb2b822fb1e"
+    name: videos/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{{ _.token }}"
+    metaSortKey: -1725918480519.375
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c65fe662101a420895c6750023c1996c
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1738799307443
+    created: 1737482568728
+    url: "{{ _.url }}/videos/upload"
+    name: videos/upload
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_f22470a02683411ebd63c270b3ae382e
+          name: file
+          value: ""
+          description: ""
+          disabled: false
+          type: file
+          fileName: D:\FIAP\fase5\videos\video_fake.mp4
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+        id: pair_e080b54f390d4eb9a7006bb1f7900f4c
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1725918480516.25
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4e044f57a75b494c8837263ed1c59c8d
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1739031901317
+    created: 1737575458469
+    url: "{{ _.url }}/videos/67a7860f8cb9c902d401fe46/download/images"
+    name: videos/:id/download/images
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{{ _.token }}"
+    metaSortKey: -1725918480510
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ae87e943184e45ac8974e6b05a1990c3
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1738120931880
+    created: 1737216805153
+    url: "{{ _.url }}/user"
+    name: user
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "dancassola@gmail.com",
+        	"password": "1234"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d6a9dc3a165f460f97f2fc9b342b25ce
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1725918480472.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_549ec63c05e14255a9b1a300563df5ec
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1739031824374
+    created: 1739027703707
+    url: "{{ _.url }}/docs/json"
+    name: docs
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3
+        id: pair_873accc309e241afadc457fd9a160790
+    authentication:
+      type: bearer
+      disabled: true
+      token: ""
+    metaSortKey: -1725918480372.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_3bbe77f898134654ac8da5d36496276b
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1737216823165
+    created: 1737216805129
+    name: image-processor
+    data:
+      url: https://j7h0cc1yia.execute-api.us-east-1.amazonaws.com/prod/
+    dataPropertyOrder:
+      "&":
+        - url
+    color: null
+    isPrivate: false
+    metaSortKey: 1725720651840
+    _type: environment
+  - _id: jar_84cda37693b942e29526a40fc487aacf
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1737216805136
+    created: 1737216805136
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_f9d770878c814e62b5ee7df2382f10b2
+    parentId: wrk_8b9c3130cb9e46b19fb2cedc58fbe6ac
+    modified: 1737216805160
+    created: 1737216805139
+    fileName: image-processor
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_85a2ba5e27154521b6f017c65f7a7292
+    parentId: env_3bbe77f898134654ac8da5d36496276b
+    modified: 1739029028880
+    created: 1737216805131
+    name: Local
+    data:
+      url: http://localhost:3000
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWVjYjZkYzRiNWVkMGI1OTc2ZWRmYyIsImVtYWlsIjoiZGFuY2Fzc29sYUBnbWFpbC5jb20iLCJpYXQiOjE3MzkwMjkwMTMsImV4cCI6MTczOTExNTQxM30.5ZpWcTLCUvTXfL5buKuaADsZa5aF2lxAtIp1ZZa9ECI
+    dataPropertyOrder:
+      "&":
+        - url
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1727041741230
+    _type: environment
+  - _id: env_5bf71a9d983542ebac8eb6cb7ca4ec15
+    parentId: env_3bbe77f898134654ac8da5d36496276b
+    modified: 1739037143366
+    created: 1737216805133
+    name: Prod
+    data:
+      url: https://a8604c1b0b14e4d68afae4f927b38537-933914872b36723d.elb.us-east-1.amazonaws.com
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWVjYjZkYzRiNWVkMGI1OTc2ZWRmYyIsImVtYWlsIjoiZGFuY2Fzc29sYUBnbWFpbC5jb20iLCJpYXQiOjE3MzkwMjgwMDUsImV4cCI6MTczOTExNDQwNX0.pI8s6XnmQBWkh7UkdugnMTKu-fwnrjl5SklRD42nNoo
+    dataPropertyOrder:
+      "&":
+        - url
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1727313152115
+    _type: environment
